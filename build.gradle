@@ -1,0 +1,24 @@
+apply plugin: 'java'
+
+sourceSets {
+	main.java.srcDir "src/main"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {    
+    compile 'commons-collections:commons-collections:3.2'
+    testCompile 'junit:junit:4.+'
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+jar {
+	from configurations.compile.collect { zipTree it }
+	//manifest.attributes 'Class-Path' : '.'
+	manifest.attributes 'Main-Class' : 'org.gradle.Demo'
+}
